@@ -5,16 +5,3 @@ kind: KubernetesApp
 spec:
   input:
     kustomizeVersion: 3.5.5
-  quickSync:
-    addVariantLabelToSelector: true
-  pipeline:
-    stages:
-      - name: K8S_CANARY_ROLLOUT
-        with:
-          replicas: 100%
-          createService: true
-      - name: WAIT_APPROVAL
-      - name: K8S_PRIMARY_ROLLOUT
-        with:
-          addVariantLabelToSelector: true
-      - name: K8S_CANARY_CLEAN
