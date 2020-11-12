@@ -5,3 +5,12 @@ kind: KubernetesApp
 spec:
   input:
     kustomizeVersion: 3.5.5
+  pipeline:
+    stages:
+      - name: K8S_CANARY_ROLLOUT
+        with:
+          replicas: 100%
+          createService: true
+      - name: WAIT_APPROVAL
+      - name: K8S_PRIMARY_ROLLOUT
+      - name: K8S_CANARY_CLEAN
